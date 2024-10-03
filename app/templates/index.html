@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .user-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User Information</h1>
+<div class="user-info">
+    <p id="user-id"></p>
+    <p id="username"></p>
+    <p id="first-name"></p>
+    <p id="last-name"></p>
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const user = Telegram.WebApp.initDataUnsafe.user;
+
+        if (user) {
+            document.getElementById('user-id').textContent = 'User ID: ' + user.id;
+            document.getElementById('username').textContent = 'Username: ' + (user.username ? user.username : 'N/A');
+            document.getElementById('first-name').textContent = 'First Name: ' + (user.first_name ? user.first_name : 'N/A');
+            document.getElementById('last-name').textContent = 'Last Name: ' + (user.last_name ? user.last_name : 'N/A');
+        } else {
+            document.querySelector('.user-info').innerHTML = '<p>User data is not available.</p>';
+        }
+    });
+</script>
+
+</body>
+</html>

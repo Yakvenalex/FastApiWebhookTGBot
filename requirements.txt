@@ -1,0 +1,7 @@
+aiogram
+fastapi
+pydantic[email]
+sqlalchemy
+python-decouple
+uvicorn
+jinja2
