@@ -1,7 +1,7 @@
-aiogram
-fastapi
-pydantic[email]
-sqlalchemy
-python-decouple
-uvicorn
-jinja2
+aiogram==3.13.1
+fastapi==0.115.0
+pydantic[email]==2.9.2
+sqlalchemy==2.0.35
+uvicorn==0.31.0
+jinja2==3.1.4
+pydantic_settings==2.5.2

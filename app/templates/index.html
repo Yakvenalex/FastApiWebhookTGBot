@@ -1,55 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 10px;
-        }
+{% extends "base.html" %}
 
-        .user-info {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+{% block title %}
+Элегантная парикмахерская
+{% endblock %}
 
-        .user-info p {
-            font-size: 1.2em;
-        }
-    </style>
-</head>
-<body>
+{% block styles %}
+<link rel="stylesheet" href="/static/css/main_page.css">
+{% endblock %}
 
-<h1>User Information</h1>
-<div class="user-info">
-    <p id="user-id"></p>
-    <p id="username"></p>
-    <p id="first-name"></p>
-    <p id="last-name"></p>
-</div>
+{% block content %}
+<header>
+    <img class="header-image"
+         src="/static/img/photo.jpg"
+         alt="Элегантный интерьер парикмахерской с кожаными креслами и зеркалами" width="1500" height="1000">
+    <div class="header-content">
+        <svg class="scissors" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30,40 L70,80 M30,80 L70,40 M50,60 L90,20 M50,60 L10,20"/>
+        </svg>
+        <h1>Элегантная парикмахерская</h1>
+    </div>
+</header>
+<main>
+    <h2>Откройте для себя мир стиля</h2>
+    <div class="divider"></div>
+    <p>Наши <span class="highlight">талантливые мастера</span> создадут для вас <span class="highlight">неповторимый образ</span>,
+        который подчеркнет вашу индивидуальность и шарм.</p>
+    <a id="book-button" href="/forma?user_id={}" class="btn">Записаться сейчас</a>
+</main>
+{% endblock %}
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const user = Telegram.WebApp.initDataUnsafe.user;
-
-        if (user) {
-            document.getElementById('user-id').textContent = 'User ID: ' + user.id;
-            document.getElementById('username').textContent = 'Username: ' + (user.username ? user.username : 'N/A');
-            document.getElementById('first-name').textContent = 'First Name: ' + (user.first_name ? user.first_name : 'N/A');
-            document.getElementById('last-name').textContent = 'Last Name: ' + (user.last_name ? user.last_name : 'N/A');
-        } else {
-            document.querySelector('.user-info').innerHTML = '<p>User data is not available.</p>';
-        }
-    });
-</script>
-
-</body>
-</html>
+{% block scripts %}
+{{ super() }}  <!-- Подключает скрипты из базового шаблона -->
+<script src="/static/js/main_page.js"></script>
+{% endblock %}
