@@ -32,11 +32,3 @@ async def parse_data(message: Message):
     else:
         print("No web app data in message")
         await message.answer('Данные отсутствуют!')
-
-
-# Дополнительно можно добавить общий обработчик для отлова всех сообщений
-@user_router.message()
-async def catch_all(message: Message):
-    print("=== Catch-all Handler Triggered ===")
-    print(f"Message type: {message.content_type}")
-    print(f"Full message object: {message}")
