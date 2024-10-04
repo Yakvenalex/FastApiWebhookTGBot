@@ -115,6 +115,10 @@ p {
     margin: 30px auto;
 }
 
+#book-button {
+    cursor: pointer; /* Изменяет курсор на указатель при наведении */
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.2em;

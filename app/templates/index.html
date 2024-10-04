@@ -25,11 +25,12 @@
     <div class="divider"></div>
     <p>Наши <span class="highlight">талантливые мастера</span> создадут для вас <span class="highlight">неповторимый образ</span>,
         который подчеркнет вашу индивидуальность и шарм.</p>
-    <a id="book-button" href="/forma?user_id={}" class="btn">Записаться сейчас</a>
+
+    <!-- Кнопка для записи -->
+    <a id="book-button" class="btn">Записаться сейчас</a>
 </main>
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}  <!-- Подключает скрипты из базового шаблона -->
 <script src="/static/js/main_page.js"></script>
 {% endblock %}
