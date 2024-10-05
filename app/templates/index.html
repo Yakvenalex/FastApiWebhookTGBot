@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-Элегантная парикмахерская
+{{ title }}
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="/static/css/main_page.css">
+<link rel="stylesheet" href="/static/css/index.css">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         <svg class="scissors" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M30,40 L70,80 M30,80 L70,40 M50,60 L90,20 M50,60 L10,20"/>
         </svg>
-        <h1>Элегантная парикмахерская</h1>
+        <h1>{{ title }}</h1>
     </div>
 </header>
 <main>
@@ -32,5 +32,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/main_page.js"></script>
+<script src="/static/js/index.js"></script>
 {% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Панель просмотра заявок
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/static/css/applications.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>{{ title_h1 }}</h1>
+
+    {% if access %}
+    <table id="appointments-table">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Услуга</th>
+            <th>Мастер</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for application in applications %}
+        <tr>
+            <td>{{ application.appointment_date }}</td>
+            <td>{{ application.appointment_time }}</td>
+            <td>{{ application.service_name }}</td>
+            <td>{{ application.master_name }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>{{ message }}</p>
+    {% endif %}
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/applications.js"></script>
+{% endblock %}

@@ -13,13 +13,35 @@ document.getElementById('appointmentForm').addEventListener('submit', function (
 });
 
 document.getElementById('closePopup').addEventListener('click', async function () {
-    const name = document.getElementById('name').value;
-    const service = document.getElementById('service').options[document.getElementById('service').selectedIndex].text;
+    const name = document.getElementById('name').value.trim();
+    const service = document.getElementById('service').value.trim();
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
-    const userId = parseInt(document.getElementById('user_id').value, 10);  // Преобразуем в число
-    const stylist = document.getElementById('stylist').value
-    const gender = document.getElementById('gender').value
+    const userId = document.getElementById('user_id').value;
+    const stylist = document.getElementById('stylist').value.trim();
+    const gender = document.getElementById('gender').value.trim();
+
+    // Проверяем валидность полей
+    if (name.length < 2 || name.length > 50) {
+        alert("Имя должно быть от 2 до 50 символов.");
+        return;
+    }
+
+    if (gender.length < 2 || gender.length > 50) {
+        alert("Пол должен быть от 2 до 50 символов.");
+        return;
+    }
+
+    if (service.length < 2 || service.length > 50) {
+        alert("Услуга должна быть от 2 до 50 символов.");
+        return;
+    }
+
+    if (stylist.length < 2 || stylist.length > 50) {
+        alert("Имя мастера должно быть от 2 до 50 символов.");
+        return;
+    }
+
     // Создаем объект с данными
     const appointmentData = {
         name: name,
@@ -28,15 +50,15 @@ document.getElementById('closePopup').addEventListener('click', async function (
         appointment_date: date,
         appointment_time: time,
         stylist: stylist,
-        user_id: userId  // Передаем user_id
+        user_id: userId
     };
 
     // Преобразуем объект в JSON строку
     const jsonData = JSON.stringify(appointmentData);
 
-    // Отправляем POST запрос на /forma
+    // Отправляем POST запрос на /appointment
     try {
-        const response = await fetch('/appointment', {
+        const response = await fetch('/api/appointment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +66,7 @@ document.getElementById('closePopup').addEventListener('click', async function (
             body: jsonData
         });
         const result = await response.json();
-        console.log('Response from /forma:', result);
+        console.log('Response from /form:', result);
 
         // Закрываем Telegram WebApp через 100 мс
         setTimeout(() => {

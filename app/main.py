@@ -1,9 +1,11 @@
 import logging
 from contextlib import asynccontextmanager
 from app.bot.create_bot import bot, dp, stop_bot, start_bot
-from app.bot.handlers.start import user_router
+from app.bot.handlers.admin_router import admin_router
+from app.bot.handlers.user_router import user_router
 from app.config import settings
-from app.front.router import router as router_students
+from app.pages.router import router as router_pages
+from app.api.router import router as router_api
 from fastapi.staticfiles import StaticFiles
 from aiogram.types import Update
 from fastapi import FastAPI, Request
@@ -15,6 +17,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 async def lifespan(app: FastAPI):
     logging.info("Starting bot setup...")
     dp.include_router(user_router)
+    dp.include_router(admin_router)
     await start_bot()
     webhook_url = settings.get_webhook_url()
     await bot.set_webhook(url=webhook_url,
@@ -41,4 +44,5 @@ async def webhook(request: Request) -> None:
     logging.info("Update processed")
 
 
-app.include_router(router_students)
+app.include_router(router_pages)
+app.include_router(router_api)

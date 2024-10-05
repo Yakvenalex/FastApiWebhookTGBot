@@ -1,69 +1,74 @@
 {% extends "base.html" %}
 
 {% block title %}
-Запись на услуги - Элегантная парикмахерская
+{{ title }}
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="/static/css/forma.css">
+<link rel="stylesheet" href="/static/css/form.css">
 {% endblock %}
 
-
 {% block content %}
-
 <main>
     <form id="appointmentForm">
         <h1>Запись на услуги</h1>
+
         <div class="form-group">
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" value="{{ first_name }}" required placeholder="Введите ваше имя">
         </div>
+
         <div class="form-group">
             <label for="gender">Пол</label>
             <select id="gender" name="gender" required>
                 <option value="" disabled selected>Выберите пол</option>
-                <option value="Мужской">Мужской</option>
-                <option value="Женский">Женский</option>
+                <option value="male_Мужской">Мужской</option>
+                <option value="female_Женский">Женский</option>
             </select>
         </div>
+
         <div class="form-group">
             <label for="service">Услуга</label>
             <select id="service" name="service" required>
                 <option value="" disabled selected>Выберите услугу</option>
-                <option value="Стрижка">Стрижка</option>
-                <option value="Окрашивание">Окрашивание</option>
-                <option value="Укладка">Укладка</option>
-                <option value="Уход за волосами">Уход за волосами</option>
+                <!-- Цикл для вывода списка услуг -->
+                {% for service in services %}
+                <option value="{{ service.service_id }}_{{ service.service_name }}">{{ service.service_name }}</option>
+                {% endfor %}
             </select>
         </div>
+
         <div class="form-group">
             <label for="date">Дата услуги</label>
             <input type="date" id="date" name="date" required>
         </div>
+
         <div class="form-group">
             <label for="time">Время услуги</label>
             <input type="time" id="time" name="time" required>
         </div>
+
         <div class="form-group">
             <label for="stylist">Мастер</label>
             <select id="stylist" name="stylist" required>
                 <option value="" disabled selected>Выберите мастера</option>
-                <option value="Анна">Анна</option>
-                <option value="Дмитрий">Дмитрий</option>
-                <option value="Елена">Елена</option>
-                <option value="Сергей">Сергей</option>
+                <!-- Цикл для вывода списка мастеров -->
+                {% for master in masters %}
+                <option value="{{ master.master_id }}_{{ master.master_name }}">{{ master.master_name }}</option>
+                {% endfor %}
             </select>
         </div>
+
         <input type="hidden" id="user_id" value="{{ user_id }}">
         <button type="submit" class="btn">Записаться</button>
     </form>
 </main>
 
 <!-- Попап -->
-{% include 'popup.html' %}
+{% include 'include/popup.html' %}
 
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/forma.js"></script>
+<script src="/static/js/form.js"></script>
 {% endblock %}
